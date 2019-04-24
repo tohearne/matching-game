@@ -4,19 +4,37 @@ body{
 	font-weight: 600;
 	font-size: 18px;
 	text-align: center;
+	margin: 0;
+}
+
+header{
+	background-color: #f15b31;
+	color: #ffffff;
+	padding: 30px 20px;
+}
+
+nav{
+	background-color: #00a6b3;
+	color: #ffffff;
+	padding:20px 0;
+}
+
+main{
+	margin:35px auto;
+	width: 850px;
 }
 
 h1{
-	color: #0d2c40;
 	font-weight: 400;
 	font-size: 45px;
 	text-transform: uppercase;
 }
 
-.links{
-	color: #f15b31;
+a{
+	color: #ffffff;
 	text-decoration: none;
 	text-transform: uppercase;
+	margin:0 20px;
 }
 
 h2{
@@ -29,4 +47,8 @@ p{
 	font-family: "Droid Serif", serif;
 	font-weight: 100;
 	line-height: 26px;
+}
+
+img{
+	margin:40px 8px;
 }
