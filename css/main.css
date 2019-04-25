@@ -18,6 +18,12 @@ nav{
 	color: #ffffff;
 	padding:20px 0;
 }
+nav a{
+	border-bottom: 2px solid transparent;
+}
+a:hover{
+	border-color: white;
+}
 
 main{
 	margin:35px auto;
@@ -51,4 +57,32 @@ p{
 
 img{
 	margin:40px 8px;
+}
+
+footer{
+	text-transform: uppercase;
+	padding: 0 20px;
+	background-color: #0d2c40;
+	color: white;
+	font-size: 14px;
+	letter-spacing: .08em;
+	font-weight: 500;
+}
+.copyright{
+	float:left;
+}
+.message{
+	float:right;
+}
+.name{
+	color: #f15b31;
+	font-weight:700;
+}
+.clearfix:after {
+visibility: hidden;
+display: block;
+content: " ";
+clear: both;
+height: 0;
+font-size: 0;
 }
