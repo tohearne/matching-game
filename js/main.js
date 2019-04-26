@@ -24,33 +24,33 @@ var cardsInPlay = [];
 
 function checkForMatch(){
 	if(cardsInPlay[0]===cardsInPlay[1]){
-		console.log("Match!");
+		alert("Match!");
 	}
 	else{
-		console.log("Not a match.");
+		alert("Not a match.");
 	}
+	
 }
 
-function flipCard(cardId){
+function flipCard(){
+	var cardId = this.getAttribute("data-id");
 	console.log("User flipped the "+cards[cardId].rank+" of "+cards[cardId].suit);
 	console.log(cards[cardId].cardImage);
 	cardsInPlay.push(cards[cardId].rank);
+	this.setAttribute("src",cards[cardId].cardImage);
 	if (cardsInPlay.length==2){
 		checkForMatch();
 	}
 }
 
-flipCard(1);
-flipCard(0);
+function createBoard(){
+	for(var i = 0;i<cards.length;i++){
+		var cardElement = document.createElement("img");
+		cardElement.setAttribute("src","images/back.png");
+		cardElement.setAttribute("data-id",i);
+		cardElement.addEventListener("click",flipCard);
+		document.getElementById("game-board").appendChild(cardElement);
+	}
+}
 
-
-/*
-var cardOne = cards[0];
-var cardTwo = cards[1];
-var cardThree = cards[2];
-var cardFour = cards[3];
-
-cardsInPlay.push(cardOne);
-cardsInPlay.push(cardTwo);
-*/
-//console.log("User flipped: "+cardsInPlay[0]);
+createBoard()
