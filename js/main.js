@@ -43,8 +43,6 @@ function checkForMatch(){
 }
 
 function flipCard(){
-	//console.log(cardsFlipped);
-	
 	if (cardsFlipped===cards.length){
 		resetBoard();
 	}
