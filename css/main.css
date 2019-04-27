@@ -56,10 +56,11 @@ p{
 }
 
 img{
-	margin:40px 8px;
+	margin:40px 8px 5px 8px;
 }
 
 footer{
+	clear: both;
 	text-transform: uppercase;
 	padding: 0 20px;
 	background-color: #0d2c40;
@@ -67,6 +68,11 @@ footer{
 	font-size: 14px;
 	letter-spacing: .08em;
 	font-weight: 500;
+}
+#match{
+	font-weight: bold;
+	font-size: 24px;
+	margin: 0;
 }
 .copyright{
 	float:left;
@@ -78,6 +84,7 @@ footer{
 	color: #f15b31;
 	font-weight:700;
 }
+
 .clearfix:after {
 visibility: hidden;
 display: block;

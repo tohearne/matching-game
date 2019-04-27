@@ -21,29 +21,60 @@ var cards = [
 }
 ];
 var cardsInPlay = [];
+var cardsFlipped = 0;
+var score = 0;
 
 function checkForMatch(){
-	if(cardsInPlay[0]===cardsInPlay[1]){
-		alert("Match!");
+	if(cards[cardsInPlay[0]].rank===cards[cardsInPlay[1]].rank){
+		document.getElementById("match").textContent = "Match!";
+		score++;
+		document.getElementById("score").textContent = "Score: "+score;
+		cardsInPlay = [];
 	}
 	else{
-		alert("Not a match.");
+		document.getElementById("match").textContent = "Try Again";
+		var cardsTemp = document.querySelectorAll('img');
+		for(var i = 0;i<cards.length;i++){
+			cardsTemp[i].removeEventListener("click",flipCard);
+			cardsTemp[i].addEventListener("click",flipBack);
+		}
 	}
 	
 }
 
 function flipCard(){
-	var cardId = this.getAttribute("data-id");
-	console.log("User flipped the "+cards[cardId].rank+" of "+cards[cardId].suit);
-	console.log(cards[cardId].cardImage);
-	cardsInPlay.push(cards[cardId].rank);
-	this.setAttribute("src",cards[cardId].cardImage);
-	if (cardsInPlay.length==2){
-		checkForMatch();
+	//console.log(cardsFlipped);
+	
+	if (cardsFlipped===cards.length){
+		resetBoard();
+	}
+	else if(this.getAttribute("src")==="images/back.png"){
+		var cardId = this.getAttribute("data-id");
+		cardsInPlay.push(cardId);
+		this.setAttribute("src",cards[cardId].cardImage);
+		cardsFlipped += 1;
+		if (cardsInPlay.length===2){
+			checkForMatch();
+		}
 	}
 }
 
+function flipBack(){
+	var cardsTemp = document.querySelectorAll('img');
+	for(var i = 0;i<cards.length;i++){
+		if(cardsTemp[i].getAttribute("data-id")===cardsInPlay[0]||cardsTemp[i].getAttribute("data-id")===cardsInPlay[1]){
+			cardsTemp[i].setAttribute("src","images/back.png");
+		}
+		cardsTemp[i].removeEventListener("click",flipBack);
+		cardsTemp[i].addEventListener("click",flipCard);
+	}
+	document.getElementById("match").textContent = "";
+	cardsInPlay = [];
+	cardsFlipped -= 2;
+}
+
 function createBoard(){
+	cards = shuffle(cards);
 	for(var i = 0;i<cards.length;i++){
 		var cardElement = document.createElement("img");
 		cardElement.setAttribute("src","images/back.png");
@@ -53,4 +84,26 @@ function createBoard(){
 	}
 }
 
-createBoard()
+function resetBoard(){
+	cards = shuffle(cards);
+	var cardsTemp = document.querySelectorAll('img');
+	for(var i = 0;i<cards.length;i++){
+		cardsTemp[i].setAttribute("src","images/back.png");
+		cardsTemp[i].setAttribute("data-id",i);
+	}
+	document.getElementById("match").textContent = "";
+	cardsInPlay = [];
+	cardsFlipped = 0;
+}
+
+function shuffle(array){
+	for(var i = array.length;i>0;i--){
+		var rand = Math.floor(Math.random()*i);
+		var temp = array[rand];
+		array[rand] = array[i-1];
+		array[i-1] = temp;
+	}
+	return array;
+}
+
+createBoard();
